@@ -17,27 +17,29 @@ def choose_song(Songs):
 
     quit_message()
     
-    choice = input("choose a key by it's associated number: ")
+    choice = input("choose a song by it's associated number: ")
        
     quit(choice)
 
 
-    if (counter < 2 or int(choice) < 1 or int(choice) > (counter-1)):
-        print("invalid")
+    if (counter < 2 or not choice.isDigit() or int(choice) < 1 or int(choice) > (counter-1)):
+        print("invalid. try again.")
+        choose_song(Songs)
     else:
         key = choices[f"{choice}"]
-        print(f"The information for your choice is: {PeanutButterCup[key]}")
+        print(f"You chose {key}")
 
 def play_song(Songs, song):
-    while(Songs)
-
-        quit_message()
-
-        attempt = input("What is the next line?")
-
-        quit(attempt)
+    n_lines = len(Songs[song].splitlines())
     
-    print("You've reached the end of the lyrics, try again")
+    stopping_point = Random.randomint(1, n_lines)
+    
+    current_line = 0;
+
+    while(current_line < stopping_point):
+        print(Songs[song].splitlines)
+
+    
 
 Songs = {
         "Californication x Red Hot Chilli Peppers" : "",
@@ -48,6 +50,15 @@ playing = True
 print("Try to guess the lyric's next line of one of the following classic songs!\n")
 
 while(playing):
-    next_line = play_song(Songs, choose_song(Songs))
+    
+    correct_next_line  = play_song(Songs, choose_song(Songs))
+    
+    quit_message()
+
+    attempt = input("What is the next line?")
+
+    quit(attempt)
+
+    print("Correct! You win") if correct_next_line.lower() == attempt.lower() else print("Better luck next time!")
     
 
