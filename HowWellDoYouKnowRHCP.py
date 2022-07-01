@@ -1,11 +1,12 @@
 import random
+from os import system, name
 
 def quit_message():
     print("To quit, enter \"q\"")
 
 def quit(flag):
     if flag == "q":
-        quit()
+        exit()
 
 def choose_song(Songs):
     counter = 1
@@ -24,19 +25,31 @@ def choose_song(Songs):
     quit(choice)
 
 
-    if (counter < 2 or not choice.isDigit() or int(choice) < 1 or int(choice) > (counter-1)):
+    if (counter < 2 or not choice.isdigit() or int(choice) < 1 or int(choice) > (counter-1)):
         print("invalid. try again.")
         choose_song(Songs)
     else:
         key = choices[f"{choice}"]
         print(f"You chose {key}")
+    
+    return key
+
+def clear():
+  
+    # for windows
+    if name == 'nt':
+        _ = system('cls')
+  
+    # for mac and linux(here, os.name is 'posix')
+    else:
+        _ = system('clear')
 
 def play_song(Songs, song):
     song = Songs[song].splitlines()
 
     n_lines = len(song)
     
-    stopping_point = Random.randomint(1, n_lines)
+    stopping_point = random.randint(1, n_lines)
     
     current_line = 0;
     
@@ -44,11 +57,11 @@ def play_song(Songs, song):
         print(song[current_line])
         current_line += 1
 
-    
+    return song[current_line]    
 
 Songs = {
-        "Californication x Red Hot Chilli Peppers" : "Psychic spies from China try to steal your mind's elation
-And little girls from Sweden dream of silver screen quotation
+        "Californication x Red Hot Chili Peppers" : """Psychic spies from China try to steal your mind's elation
+        And little girls from Sweden dream of silver screen quotation
 And if you want these kind of dreams it's Californication
 It's the edge of the world and all of Western civilization
 The sun may rise in the East at least it's settled in a final location
@@ -73,8 +86,6 @@ First born unicorn
 Hardcore soft porn
 Dream of Californication
 Dream of Californication
-Dream of Californication
-Dream of Californication
 Destruction leads to a very rough road but it also breeds creation
 And earthquakes are to a girl's guitar, they're just another good vibration
 And tidal waves couldn't save the world from Californication
@@ -85,8 +96,8 @@ Hardcore soft porn
 Dream of Californication
 Dream of Californication
 Dream of Californication
-Dream of Californication",
-        "Other side x Red Hot Chilli Peppers": "How long, how long will I slide?
+Dream of Californication""" ,
+        "Other side x Red Hot Chili Peppers" : """How long, how long will I slide?
 Separate my side, I don't
 I don't believe it's bad
 Slit my throat it's all I ever
@@ -129,13 +140,12 @@ Separate my side, I don't
 I don't believe it's bad
 Slit my throat it's all I ever
 How long, I don't, I don't believe it's bad
-Slit my throat it's all I ever"
+Slit my throat it's all I ever"""
     }
 
-playing = True
 print("Try to guess the lyric's next line of one of the following classic songs!\n")
 
-while(playing):
+while(True):
     
     correct_next_line  = play_song(Songs, choose_song(Songs))
     
