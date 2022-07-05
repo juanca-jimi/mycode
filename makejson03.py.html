@@ -1,0 +1,48 @@
+<html><head>
+<title>makejson03.py</title>
+<meta name="Generator" content="htmlizer/[Twisted, version 18.9.0]" />
+<link rel="alternate" href="makejson03.py" type="text/x-python" />
+
+</head>
+<body>
+<pre><span class="py-src-comment">#!/usr/bin/python3</span>
+<span class="py-src-string">&quot;&quot;&quot;opening a static file containing JSON data | Alta3 Research&quot;&quot;&quot;</span>
+
+<span class="py-src-comment"># JSON is part of the Python Standard Library</span>
+<span class="py-src-variable">import</span> <span class="py-src-variable">json</span>
+
+<span class="py-src-variable">def</span> <span class="py-src-identifier">main</span>():
+    <span class="py-src-string">&quot;&quot;&quot;runtime code&quot;&quot;&quot;</span>
+    <span class="py-src-comment">## open the file</span>
+    <span class="py-src-variable">with</span> <span class="py-src-variable">open</span>(<span class="py-src-string">&quot;datacenter.json&quot;</span>, <span class="py-src-string">&quot;r&quot;</span>) <span class="py-src-variable">as</span> <span class="py-src-variable">datacenter</span>:
+        <span class="py-src-variable">datacenterstring</span> = <span class="py-src-variable">datacenter</span>.<span class="py-src-variable">read</span>()
+
+    <span class="py-src-comment">## display our decoded string</span>
+    <span class="py-src-variable">print</span>(<span class="py-src-variable">datacenterstring</span>)
+    <span class="py-src-variable">print</span>(<span class="py-src-variable">type</span>(<span class="py-src-variable">datacenterstring</span>))           
+    <span class="py-src-variable">print</span>(<span class="py-src-string">&quot;\nThe code above is string data. Python cannot easily work with this data.&quot;</span>)
+    <span class="py-src-variable">input</span>(<span class="py-src-string">&quot;Press Enter to continue\n&quot;</span>)            
+
+    <span class="py-src-comment">## Create the JSON string</span>
+    <span class="py-src-variable">datacenterdecoded</span> = <span class="py-src-variable">json</span>.<span class="py-src-variable">loads</span>(<span class="py-src-variable">datacenterstring</span>)
+
+    <span class="py-src-comment">## This is now a dictionary</span>
+    <span class="py-src-variable">print</span>(<span class="py-src-variable">type</span>(<span class="py-src-variable">datacenterdecoded</span>))
+
+    <span class="py-src-comment">## display the servers in the datacenter</span>
+    <span class="py-src-variable">print</span>(<span class="py-src-variable">datacenterdecoded</span>)
+
+    <span class="py-src-comment">## display the servers in row3</span>
+    <span class="py-src-variable">print</span>(<span class="py-src-variable">datacenterdecoded</span>[<span class="py-src-string">&quot;row3&quot;</span>])
+
+    <span class="py-src-comment">## display the 2nd server in row2</span>
+    <span class="py-src-variable">print</span>(<span class="py-src-variable">datacenterdecoded</span>[<span class="py-src-string">&quot;row2&quot;</span>][<span class="py-src-number">1</span>])
+
+    <span class="py-src-comment">## write code to</span>
+    <span class="py-src-comment">## display the last server in row3</span>
+
+<span class="py-src-variable">if</span> <span class="py-src-variable">__name__</span> == <span class="py-src-string">&quot;__main__&quot;</span>:
+    <span class="py-src-variable">main</span>()
+
+</pre>
+</body>
